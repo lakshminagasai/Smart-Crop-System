@@ -328,8 +328,8 @@ def get_soil_data_api():
         "N": int(npk["N"]),
         "P": int(npk["P"]),
         "K": int(npk["K"]),
-        "pH": round(ph, 2),
-        "rainfall": round(rainfall, 2),
+        "pH": round(ph, 1),
+        "rainfall": round(rainfall, 1),
         "temperature": round(temperature, 2),
         "humidity": round(humidity, 2)
     })
@@ -536,6 +536,6 @@ def querydisplay():
     alltodo = ContactUs.query.all()
     return render_template("display.html",alltodo=alltodo)
 
-
+import os
 if __name__ == "__main__":
-    app.run(debug=True,port=8000)
+    app.run(   host="0.0.0.0", debug=True, port=int(os.environ.get("PORT", 5000)))
